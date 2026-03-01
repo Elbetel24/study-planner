@@ -16,11 +16,15 @@
         <textarea id="notes-area" placeholder="Keep quick notes here..."></textarea>
     </aside>
     <main>
-        <!-- quote box -->
-        <aside id="quote-box">
-            <p id="quote-text">"Stay focused and keep pushing forward."</p>
-            <div id="quote-time"></div>
-            <div id="task-countdown"></div>
+        <!-- quote & countdown container -->
+        <aside id="quote-container">
+            <aside id="quote-box">
+                <p id="quote-text">"Stay focused and keep pushing forward."</p>
+                <div id="quote-time"></div>
+            </aside>
+            <aside id="countdown-box">
+                <div id="task-countdown"></div>
+            </aside>
         </aside>
         <!-- login/register section -->
         <section id="auth-section">
@@ -66,6 +70,11 @@
                     <input type="date" id="due" required />
                     <label for="color">Color</label>
                     <input type="color" id="color" value="#4CAF50" />
+                    <label for="type">Type</label>
+                    <select id="type">
+                        <option value="task">Task</option>
+                        <option value="event">Event</option>
+                    </select>
                     <button type="submit">Add Task</button>
                 </form>
             </section>

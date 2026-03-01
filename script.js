@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderTasks() {
     taskList.innerHTML = "";
     const tasks = loadTasks();
-    tasks.forEach(({ title, due, color }, index) => {
+    tasks.forEach(({ title, due, color, type }, index) => {
       const li = document.createElement("li");
       li.className = "task-item";
       li.style.borderLeft = `6px solid ${color}`;
       const span = document.createElement("span");
-      span.textContent = `${title} - due ${due}`;
+      span.textContent = `${title} (${type}) - due ${due}`;
       const btn = document.createElement("button");
       btn.textContent = "Delete";
       btn.addEventListener("click", () => {
@@ -50,9 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function addTask(title, due, color) {
+  function addTask(title, due, color, type) {
     const tasks = loadTasks();
-    tasks.push({ title, due, color });
+    tasks.push({ title, due, color, type });
     saveTasks(tasks);
     renderTasks();
   }
@@ -62,7 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = document.getElementById("title").value;
     const due = document.getElementById("due").value;
     const color = document.getElementById("color").value;
-    addTask(title, due, color);
+    const type = document.getElementById("type").value;
+    addTask(title, due, color, type);
     taskForm.reset();
   });
 
@@ -227,6 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const now = new Date();
     let nearest = null;
     tasks.forEach(t => {
+      if (t.type !== 'event') return;
       const due = new Date(t.due);
       if (due > now) {
         if (!nearest || due < new Date(nearest.due)) {
@@ -244,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const mins = Math.floor((diff / (1000 * 60)) % 60);
       countdownEl.textContent = `${days}d ${hours}h ${mins}m left for "${nearest.title}"`;
     } else {
-      countdownEl.textContent = "No upcoming tasks";
+      countdownEl.textContent = "No upcoming events";
     }
   }
   setInterval(updateCountdown, 60000);
