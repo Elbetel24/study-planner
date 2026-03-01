@@ -40,7 +40,7 @@ main {
   top: 1rem;
   right: 1rem;
   width: 180px;
-  background: #b07a16;
+  background: #ad8c4d;
   border: 1px solid #ccc;
   padding: 0.5rem;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
@@ -48,7 +48,11 @@ main {
   text-align: center;
   z-index: 1000;
 }
-
+#task-countdown {
+  margin-top: 0.5rem;
+  font-style: normal;
+  font-size: 0.85em;
+}
 
 #notes-sidebar h2 {
   margin-top: 0;

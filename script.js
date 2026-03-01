@@ -220,4 +220,33 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   setInterval(updateQuoteTime, 1000);
   updateQuoteTime();
+
+  // countdown to nearest upcoming task
+  function updateCountdown() {
+    const tasks = loadTasks();
+    const now = new Date();
+    let nearest = null;
+    tasks.forEach(t => {
+      const due = new Date(t.due);
+      if (due > now) {
+        if (!nearest || due < new Date(nearest.due)) {
+          nearest = t;
+        }
+      }
+    });
+    const countdownEl = document.getElementById("task-countdown");
+    if (!countdownEl) return;
+    if (nearest) {
+      const due = new Date(nearest.due);
+      const diff = due - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      countdownEl.textContent = `${days}d ${hours}h ${mins}m left for "${nearest.title}"`;
+    } else {
+      countdownEl.textContent = "No upcoming tasks";
+    }
+  }
+  setInterval(updateCountdown, 60000);
+  updateCountdown();
 });
