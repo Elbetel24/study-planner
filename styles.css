@@ -34,6 +34,22 @@ main {
   overflow-y: auto;
 }
 
+/* quote of the week box */
+#quote-box {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 180px;
+  background: #b07a16;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  font-style: italic;
+  text-align: center;
+  z-index: 1000;
+}
+
+
 #notes-sidebar h2 {
   margin-top: 0;
 }
@@ -101,7 +117,8 @@ body {
 
 /* calendar styling */
 #calendar-section {
-  background: #fff;
+  background: rgb(195, 172, 145);
+;
   padding: 1rem;
   border-radius: 4px;
   margin-top: 1rem;
@@ -115,6 +132,7 @@ body {
 #calendar {
   width: 100%;
   border-collapse: collapse;
+  background-color: rgb(195, 172, 145);
 }
 
 #calendar th,
@@ -167,7 +185,7 @@ body {
 #task-form button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background: #4CAF50;
+  background: #f2faf2;
  
   border: none;
   cursor: pointer;

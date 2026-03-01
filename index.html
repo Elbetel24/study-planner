@@ -16,6 +16,11 @@
         <textarea id="notes-area" placeholder="Keep quick notes here..."></textarea>
     </aside>
     <main>
+        <!-- quote box -->
+        <aside id="quote-box">
+            <p id="quote-text">"Stay focused and keep pushing forward."</p>
+            <div id="quote-time"></div>
+        </aside>
         <!-- login/register section -->
         <section id="auth-section">
             <h2>Login or Register</h2>
@@ -58,6 +63,8 @@
                     <input type="text" id="title" required />
                     <label for="due">Due Date</label>
                     <input type="date" id="due" required />
+                    <label for="color">Color</label>
+                    <input type="color" id="color" value="#4CAF50" />
                     <button type="submit">Add Task</button>
                 </form>
             </section>

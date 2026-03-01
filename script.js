@@ -31,9 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderTasks() {
     taskList.innerHTML = "";
     const tasks = loadTasks();
-    tasks.forEach(({ title, due }, index) => {
+    tasks.forEach(({ title, due, color }, index) => {
       const li = document.createElement("li");
       li.className = "task-item";
+      li.style.borderLeft = `6px solid ${color}`;
       const span = document.createElement("span");
       span.textContent = `${title} - due ${due}`;
       const btn = document.createElement("button");
@@ -49,9 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function addTask(title, due) {
+  function addTask(title, due, color) {
     const tasks = loadTasks();
-    tasks.push({ title, due });
+    tasks.push({ title, due, color });
     saveTasks(tasks);
     renderTasks();
   }
@@ -60,7 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const title = document.getElementById("title").value;
     const due = document.getElementById("due").value;
-    addTask(title, due);
+    const color = document.getElementById("color").value;
+    addTask(title, due, color);
     taskForm.reset();
   });
 
@@ -153,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dayTasks.forEach(t => {
           const item = document.createElement("li");
           item.textContent = t.title;
+          item.style.color = t.color;
           list.appendChild(item);
         });
         cell.appendChild(list);
@@ -206,4 +209,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (currentUser) {
     showPlanner();
   }
+
+  // update current time/date in quote box
+  function updateQuoteTime() {
+    const now = new Date();
+    const tEl = document.getElementById("quote-time");
+    if (tEl) {
+      tEl.textContent = now.toLocaleString();
+    }
+  }
+  setInterval(updateQuoteTime, 1000);
+  updateQuoteTime();
 });
